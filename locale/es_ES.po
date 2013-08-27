@@ -1,0 +1,103 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "error:nereid.contact:"
+msgid "The Unique Name of the Contact must be unique."
+msgstr "El nombre del contacto debe ser único."
+
+msgctxt "error:nereid.contact:"
+msgid ""
+"You can not delete contacts because you will get error 404 NOT Found. "
+"Dissable active field."
+msgstr ""
+"No puede eliminar los contactos porque obtendrá un error 404 NOT Found. "
+"Desactiva el contacto para no ser mostrado."
+
+msgctxt "field:nereid.contact,address:"
+msgid "Contact"
+msgstr "Contacto"
+
+msgctxt "field:nereid.contact,create_date:"
+msgid "Create Date"
+msgstr "Fecha de creación"
+
+msgctxt "field:nereid.contact,create_uid:"
+msgid "Create User"
+msgstr "Usuario de creación"
+
+msgctxt "field:nereid.contact,description:"
+msgid "Description"
+msgstr "Descripción"
+
+msgctxt "field:nereid.contact,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:nereid.contact,rec_name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:nereid.contact,send_email:"
+msgid "Send Email"
+msgstr "Enviar email"
+
+msgctxt "field:nereid.contact,smtp_server:"
+msgid "SMTP Server"
+msgstr "Servidor SMTP"
+
+msgctxt "field:nereid.contact,status:"
+msgid "Status"
+msgstr "Estado"
+
+msgctxt "field:nereid.contact,uri:"
+msgid "URI"
+msgstr "URI"
+
+msgctxt "field:nereid.contact,write_date:"
+msgid "Write Date"
+msgstr "Fecha modificación"
+
+msgctxt "field:nereid.contact,write_uid:"
+msgid "Write User"
+msgstr "Usuario modificación"
+
+msgctxt "help:nereid.contact,description:"
+msgid "Allow HTML in description contact"
+msgstr "Permite HTML en la descripción del contacto"
+
+msgctxt "help:nereid.contact,send_email:"
+msgid "Show a form to send a email to address"
+msgstr ""
+"Muestra un formulario para enviar correo electrónico a la dirección del "
+"contacto"
+
+msgctxt "help:nereid.contact,smtp_server:"
+msgid "Force SMTP server or use global defined in Nereid Website"
+msgstr ""
+"Forzar servidor SMTP o usar el servidor global definido en la configuración "
+"del sitio web."
+
+msgctxt "help:nereid.contact,status:"
+msgid "Dissable to not show contact"
+msgstr "Desactivar para no mostrar el contacto."
+
+msgctxt "help:nereid.contact,uri:"
+msgid "Unique name is used as the uri."
+msgstr "El nombre único se usa en las url."
+
+msgctxt "model:ir.action,name:act_contact_form"
+msgid "Contact"
+msgstr "Contacto"
+
+msgctxt "model:ir.ui.menu,name:menu_contact_form"
+msgid "Contact"
+msgstr "Contacto"
+
+msgctxt "model:ir.ui.menu,name:menu_nereid_contact"
+msgid "Contact"
+msgstr "Contacto"
+
+msgctxt "model:nereid.contact,name:"
+msgid "Contact"
+msgstr "Contacto"
