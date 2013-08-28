@@ -45,10 +45,25 @@ class Contact(ModelSQL, ModelView):
         }, 
         domain=[('state', '=', 'done')],
         help='Force SMTP server or use global defined in Nereid Website')
+    show_street = fields.Boolean('Show Street')
+    show_phone = fields.Boolean('Show Phone')
+    show_fax = fields.Boolean('Show Fax')
+    show_email = fields.Boolean('Show Email')
 
     @staticmethod
     def default_status():
-        'Return True'
+        return True
+
+    @staticmethod
+    def default_show_street():
+        return True
+
+    @staticmethod
+    def default_show_phone():
+        return True
+
+    @staticmethod
+    def default_show_fax():
         return True
 
     @classmethod

@@ -18,5 +18,15 @@ this repository contains the full copyright notices and license terms. -->
             <label name="smtp_server"/>
             <field name="smtp_server"/>
         </page>
+        <page string="Configuration" id="configuration">
+            <label name="show_street"/>
+            <field name="show_street"/>
+            <label name="show_phone"/>
+            <field name="show_phone"/>
+            <label name="show_fax"/>
+            <field name="show_fax"/>
+            <label name="show_email"/>
+            <field name="show_email"/>
+        </page>
     </notebook>
 </form>
