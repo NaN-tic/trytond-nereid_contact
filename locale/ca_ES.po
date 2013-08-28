@@ -42,6 +42,22 @@ msgctxt "field:nereid.contact,send_email:"
 msgid "Send Email"
 msgstr "Enviar correu"
 
+msgctxt "field:nereid.contact,show_email:"
+msgid "Show Email"
+msgstr "Mostra email"
+
+msgctxt "field:nereid.contact,show_fax:"
+msgid "Show Fax"
+msgstr "Mostra fax"
+
+msgctxt "field:nereid.contact,show_phone:"
+msgid "Show Phone"
+msgstr "Mostra telèfon"
+
+msgctxt "field:nereid.contact,show_street:"
+msgid "Show Street"
+msgstr "Mostra direcció"
+
 msgctxt "field:nereid.contact,smtp_server:"
 msgid "SMTP Server"
 msgstr "Servidor SMTP"
