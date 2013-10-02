@@ -1,13 +1,15 @@
 #This file is part nereid_contact module for Tryton.
 #The COPYRIGHT file at the top level of this repository contains
 #the full copyright notices and license terms.
+from nereid.helpers import slugify, url_for
+from nereid import render_template, request
+from nereid.contrib.pagination import Pagination
+from werkzeug.exceptions import NotFound
 
 from trytond.model import ModelView, ModelSQL, fields
 from trytond.pyson import Eval
 from trytond.pool import Pool
-from nereid.helpers import slugify, url_for, key_from_list
-from nereid import render_template, request
-from nereid.contrib.pagination import Pagination
+
 from email.mime.text import MIMEText
 from email import Utils
 from flask import jsonify
@@ -111,7 +113,7 @@ class Contact(ModelSQL, ModelView):
         """
         Render all contacts
         """
-        Post = Pool().get('nereid.blog.post')
+        Contact = Pool().get('nereid.contact')
 
         page = request.args.get('page', 1, int)
         clause = []
