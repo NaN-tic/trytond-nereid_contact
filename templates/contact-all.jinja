@@ -1,0 +1,29 @@
+{% extends 'base.jinja' %}
+{% from '_helpers.jinja' import render_pagination with context %}
+
+{% block head %}<link href="{{ STATIC }}{{ config['TEMPLATE'] }}/css/contact.css" rel="stylesheet" type="text/css">{% endblock %}
+{% block metadescription %}{{ _('Blog') }} - {{ config['TITLE'] }}. {{ _('Page') }} {{ contacts.page }}{% endblock %}
+
+{% block main %}
+{% include 'nav.jinja' %}
+<div class="row">
+    <div class="span12 page-header">
+        <h1>{{ _('Contacts') }}
+    </div>
+</div>
+<div class="row-fluid">{% if contacts %}{% set count = 0 %}{% for contact in contacts %}
+    <div class="span4 contact-border section">
+        <a href="{{ url_for('nereid.contact.render', uri=contact.uri) }}" alt="{{ contact.address.name or contact.address.party.name }}" title="{{ contact.address.name or contact.address.party.name }}">{{ contact.address.name or contact.address.party.name }}</a><br/>
+        {% if contact.address.street and contact.show_street %}{{ contact.address.street }}. {{ contact.address.zip }} {{ contact.address.city }}. {{ contact.address.country.name }}<br/>{% endif %}
+        {% if contact.address.phone and contact.show_phone %}{{ _('Phone') }}: {{ contact.address.phone }}<br/>{% endif %}
+        {% if contact.address.fax and contact.show_fax %}{{ _('Fax') }}: {{ contact.address.fax }}<br/>{% endif %}
+        {% if contact.address.email and contact.send_email%}<a href="{{ url_for('nereid.contact.render', uri=contact.uri) }}" class="btn btn-small">{{ _('Send email') }}</a><br/>{% endif %}
+    </div>
+{% set count = count + 1 %}{% if count == 3 %}{% set count = 0 %}</div>
+<div class="row-fluid">{% endif %}
+{% endfor %}</div>
+{% if contacts.pages > 1 %}{{ render_pagination(contacts, None, 'nereid.contact.all') }}{% endif %}
+{% else %}
+<div class="alert">{{ _('Sorry. Not available contacts') }}.</div>
+{% endif %}
+{% endblock %}

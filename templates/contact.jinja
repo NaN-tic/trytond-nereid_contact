@@ -1,0 +1,104 @@
+{% extends 'base.jinja' %}
+{% from '_helpers.jinja' import render_keywords with context %}
+
+{% block head %}<link href="{{ STATIC }}{{ config['TEMPLATE'] }}/css/contact.css" rel="stylesheet" type="text/css">{% endblock %}
+{% block metadescription %}{{ _('Contact')}} {{ contact.address.name or contact.address.party.name }}{% endblock %}
+{% block metatitle %}{{ _('Contact')}} {{ contact.address.name or contact.address.party.name }}{% endblock %}
+{% block canonical %}{{ url_for('nereid.contact.render', uri=contact.uri) }}{% endblock %}
+
+{% block main %}
+{% include 'nav.jinja' %}
+<div class="row">
+    <div class="span12">
+        <h2>{{ contact.address.name or contact.address.party.name }}</h2>
+    </div>
+</div>
+{% set columns = 3 %}{% if not contact.description %}{% set columns = 6 %}{% endif %}
+<div class="row">
+    {% if contact.description %}<div class="span{{ columns }}">
+        {{ contact.description|safe }}
+    </div>{% endif %}
+    <div class="span{{ columns }}">
+        <address>
+        {% if contact.address.street and contact.show_street %}{{ contact.address.street }}. {{ contact.address.zip }} {{ contact.address.city }}. {{ contact.address.country.name }}<br/>{% endif %}
+        {% if contact.address.phone and contact.show_phone %}{{ _('Phone') }}: {{ contact.address.phone }}<br/>{% endif %}
+        {% if contact.address.fax and contact.show_fax %}{{ _('Fax') }}: {{ contact.address.fax }}<br/>{% endif %}
+        {% if contact.address.email and contact.show_email %}{{ _('E-mail') }}: <a href="mailto:{{ contact.address.email }}">{{ contact.address.email }}</a><br/>{% endif %}
+        </address>
+    </div>
+    {% if contact.send_email and contact.address.email %}<div class="span{{ columns }}">
+        <script src="{{ STATIC }}{{ config['TEMPLATE'] }}/js/jquery.validate.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        $().ready(function() {
+            $('#waiting').hide();
+            $('#warning').hide();
+            $('#success').hide();
+            $("#contact-form").validate({
+                rules: {
+                    name: "required",
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    message: "required",
+                },
+                submitHandler: function(form) {
+                    $('#waiting').show();
+                    $('#waiting').text('{{ _('Sending...') }}');
+                    $('#warning').hide();
+                    $('#success').hide();
+
+                    var data = $('#contact-form').serializeArray();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ url_for('nereid.contact.render', uri=contact.uri) }}",
+                        contentType: "application/json; charset=utf-8",
+                        data:JSON.stringify(data),
+                        success: function(data) {
+                            $('#waiting').hide();
+                            $('#success').show();
+                            $('#success').text('{{ _('Successfull. Form sended.') }}');
+                            },
+                        error:function(data){
+                            $('#waiting').hide();
+                            $('#warning').show();
+                            $('#warning').text('{{ _('Error. Review data and resend.') }}');
+                            },
+                        });
+                return false;
+                },
+                messages: {
+                    name: "{{ _('Add a name') }}",
+                    email: "{{ _('Add an email') }}",
+                    message: "{{ _('Add a message') }}",
+                }
+            });
+        });
+        </script>
+        <form action="#" id="contact-form" class="form-horizontal" method="POST">
+            <fieldset><legend>{{ _('Contact') }} {{ contact.address.name or contact.address.party.name }}</legend>
+            <div id="waiting"></div>
+            <div id="warning"></div>
+            <div id="success"></div>
+            <div class="control-group">
+              <label class="control-label" for="name">{{ _('Name') }}</label>
+              <div class="controls"><input type="text" class="input-xlarge" name="name" id="name"></div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="email">{{ _('Email') }}</label>
+              <div class="controls"><input type="email" class="input-xlarge" name="email" id="email"></div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="message">{{ _('Message') }}</label>
+              <div class="controls"><textarea class="input-xlarge" name="message" id="message" rows="3"></textarea></div>
+            </div>
+            <div class="form-actions">
+                <input type="hidden" name="subject" value="{{ _('Contact') }} {{ contact.address.name or contact.address.party.name }}">
+                <button type="submit" class="btn btn-primary btn-large">{{ _('Send') }}</button>
+            </div>
+            </fieldset>
+        </form>
+    </div>{% endif %}
+</div>
+{% endblock %}
