@@ -1,12 +1,14 @@
 {% extends 'base.jinja' %}
 {% from '_helpers.jinja' import render_keywords with context %}
 
+{% block title %}{{ _('Contact')}} {{ contact.address.name or contact.address.party.name }}{% endblock %}
 {% block head %}<link href="{{ STATIC }}{{ config['TEMPLATE'] }}/css/contact.css" rel="stylesheet" type="text/css">{% endblock %}
 {% block metadescription %}{{ _('Contact')}} {{ contact.address.name or contact.address.party.name }}{% endblock %}
 {% block metatitle %}{{ _('Contact')}} {{ contact.address.name or contact.address.party.name }}{% endblock %}
 {% block canonical %}{{ url_for('nereid.contact.render', uri=contact.uri) }}{% endblock %}
 
 {% block main %}
+{% set bread_crumbs = [(url_for('nereid.website.home'), _('Home')), (url_for('nereid.contact.all'), _('Contacts')), (url_for('nereid.contact.render', uri=contact.uri), contact.address.name)] %}
 {% include 'nav.jinja' %}
 <div class="row">
     <div class="span12">

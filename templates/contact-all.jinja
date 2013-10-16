@@ -1,10 +1,12 @@
 {% extends 'base.jinja' %}
 {% from '_helpers.jinja' import render_pagination with context %}
 
+{% block title %}{{ _('Contacts') }} - {{ _('Page') }} {{ contacts.page }}{% endblock %}
 {% block head %}<link href="{{ STATIC }}{{ config['TEMPLATE'] }}/css/contact.css" rel="stylesheet" type="text/css">{% endblock %}
 {% block metadescription %}{{ _('Blog') }} - {{ config['TITLE'] }}. {{ _('Page') }} {{ contacts.page }}{% endblock %}
 
 {% block main %}
+{% set bread_crumbs = [(url_for('nereid.website.home'), _('Home')), (url_for('nereid.contact.all'), _('Contacts'))] %}
 {% include 'nav.jinja' %}
 <div class="row">
     <div class="span12 page-header">
