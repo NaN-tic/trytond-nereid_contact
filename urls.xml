@@ -2,7 +2,7 @@
 <tryton>
     <data >
         <record id="contact_uri" model="nereid.url_rule">
-            <field name="rule">/&lt;language&gt;/contact/&lt;uri&gt;</field>
+            <field name="rule">/contact/&lt;uri&gt;</field>
             <field name="endpoint">nereid.contact.render</field>
             <field name="sequence" eval="10" />
             <field name="http_method_get" eval="True"/>
@@ -11,7 +11,7 @@
             <field name="url_map" ref="nereid.default_url_map" />
         </record>
         <record id="contact" model="nereid.url_rule">
-            <field name="rule">/&lt;language&gt;/contact/</field>
+            <field name="rule">/contact/</field>
             <field name="endpoint">nereid.contact.all</field>
             <field name="sequence" eval="10" />
             <field name="url_map" ref="nereid.default_url_map" />
